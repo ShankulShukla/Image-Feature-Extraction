@@ -22,4 +22,4 @@ Implemented various techniques for static hand sign understanding. Initially sta
 ## Transfer learning using inception v3 model
 - Pre-trained Inception model is being used and an extra layer is being added onto to create a new inception architecture to classify hand sign.
 - To decrease the compute time I stored the transfer values by the model of the training samples ahead of training and saved it onto a pickle file.
-- With 500 epochs of training our model tend to achieve an accuracy of **95%** and this model also tend to perform well on the webcam input.
+- With 500 epochs of training our model tend to achieve an accuracy of **95%** and this model also tend to perform well on the webcam input as the images with which the model is trained is RGB images not the gray-scale.

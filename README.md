@@ -15,7 +15,8 @@ Implemented various techniques for static hand sign understanding. Initially sta
 ## Image classification using feature extractors
 - Here I tend to work on classic image processing techniques for hand sign recognition.
 - I used the improved dataset and applied edge detection and then try to extract the features in the image by suing feature extractor algorithms like SIFT, SURF, and ORB. Further, I used the bag of visual word model on the feature extracted by the descriptors and applied K means clustering so that similar features are clustered together. Then created a new feature representation of the images based on the clustering.
-- On the new feature representation found on the previous step I tried various Machine learning model and got the following results. 
+- On the new feature representation found on the previous step I tried various Machine learning model and got the following results.
+![](image.png)
 
 
 ## Transfer learning using inception v3 model

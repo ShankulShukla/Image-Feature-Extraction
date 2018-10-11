@@ -3,13 +3,13 @@ Implemented various techniques for static hand sign understanding. Initially sta
 
 ## Sign MNIST based model
 - I started with very basic dataset available at this [link](https://www.kaggle.com/datamunge/sign-language-mnist) and created a three-layered CNN based model with max-pooling at first two layers and two fully connected layers.
-- With 125 epochs of training, the model got an accuracy of 98.28% on the test set.
+- With 125 epochs of training, the model got an accuracy of **98.28%** on the test set.
 - The dataset has 27455 training samples which are 28 * 28 pixels so when this model tested on webcam input it does not tend to perform well given getting very good accuracy in the test set.
 
 ## Improved sign dataset
 - [This](https://drive.google.com/open?id=1wgXtF6QHKBuXRx3qxuf-o6aOmN87t8G-) dataset is hand created is much more difficult to work with having 480 * 640 images and reflects good properties to make model deployable for real-world hand inputs.
 - Similar model architecture is being used as for sign MNIST but an extra convolution layer is added with max-pooling layer. Batch normalization is applied in the first two layers as it tends to perform better results.
-- WIth 100 epochs of training, the model achieved 94.5% accuracy on the test set.
+- WIth 100 epochs of training, the model achieved **94.5%** accuracy on the test set.
 > #Note- The images in the dataset is resized to 128 * 128 pixels and also to grayscale.
 
 ## Image classification using feature extractors
@@ -22,4 +22,4 @@ Implemented various techniques for static hand sign understanding. Initially sta
 ## Transfer learning using inception v3 model
 - Pre-trained Inception model is being used and an extra layer is being added onto to create a new inception architecture to classify hand sign.
 - To decrease the compute time I stored the transfer values by the model of the training samples ahead of training and saved it onto a pickle file.
-- With 500 epochs of training our model tend to achieve an accuracy of 95% and this model also tend to perform well on the webcam input.
+- With 500 epochs of training our model tend to achieve an accuracy of **95%** and this model also tend to perform well on the webcam input.

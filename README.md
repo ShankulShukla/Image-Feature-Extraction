@@ -1,6 +1,36 @@
 # Hand-Sign-Detection
 Implemented various techniques for static hand sign understanding. Initially started out with the MNIST sign dataset available in the kaggle and then moving on a more bigger dataset available at this [link](https://drive.google.com/open?id=1wgXtF6QHKBuXRx3qxuf-o6aOmN87t8G-). I applied various image processing technique including edge detection, feature detection, and extraction etc. Also, I used CNN architecture as well as transfer learning using inception model, I also used various machine learning classifier which works on image feature extracted.
 
+## Traditional feature detection
+
+### Scale-Invariant Feature Transform (SIFT) 
+
+hjhjvjhbjj nbvb
+
+[Main Paper](https://people.eecs.berkeley.edu/~malik/cs294/lowe-ijcv04.pdf)
+
+### Speeded-Up Robust Features (SURF)
+
+ghhg jhbjhb
+
+[Main Paper](https://people.ee.ethz.ch/~surf/eccv06.pdf)
+
+### Oriented FAST and Rotated BRIEF (ORB)
+
+jhbhj jj
+
+[Main Paper](https://ieeexplore.ieee.org/document/6126544)
+
+## Deep Learning feature extraction
+
+### AlexNet
+
+[AlexNet based Feature extraction paper](https://www.semanticscholar.org/paper/Feature-extraction-and-image-retrieval-based-on-Yuan-Zhang/bada07c7ea423739c0db6b8f1f2fc2438881f21d)
+### Transfer learning with Inception 
+
+[Application of transfer learning in feature extraction paper](https://ieeexplore.ieee.org/document/7946733)
+
+
 ## Sign MNIST based model
 - I started with very basic dataset available at this [link](https://www.kaggle.com/datamunge/sign-language-mnist) and created a three-layered CNN based model with max-pooling at first two layers and two fully connected layers.
 - With 125 epochs of training, the model got an accuracy of **98.28%** on the test set.

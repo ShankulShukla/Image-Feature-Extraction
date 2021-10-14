@@ -1,13 +1,16 @@
-Hand-Sign-Detection
-Implemented various techniques for static hand sign understanding. Initially started out with the MNIST sign dataset available in the kaggle and then moving on a more bigger dataset available at this [link](https://drive.google.com/open?id=1wgXtF6QHKBuXRx3qxuf-o6aOmN87t8G-). I applied various image processing technique including edge detection, feature detection, and extraction etc. Also, I used CNN architecture as well as transfer learning using inception model, I also used various machine learning classifier which works on image feature extracted.
+An implementational study on traditional and deep learning techniques for feature extraction. Extracting features i.e., comprehensive description of image to enhance accuracy of our classifier on the target dataset. This project involves various image processing technique including edge detection, smoothing, feature detection, and extraction etc. 
 
-- Give comprehensive description of image.
 
 ## Traditional feature detection
 
 In this we extract set of descriptors of image’s features, then pass those extracted features to our machine learning algorithms for classification on hand sign language classification. Before extracting features from feature detection algorithms we applied two processing steps to our images - 
 
 Images can contain different types of noise, image Smoothing (also called blurring) techniques help in reducing the noise. We applied Gaussian filter for image smoothing to all images in our dataset as we found that gaussian preserves more features like edges which is quite important based on our hand sign dataset. The kernel size of 5x5 gave the best results. Then I extracted the edges using canny edge detector and passed these processed imahge to the feature extraction alorgtims defined later. This earlier processing resulted in increased set of feature descriptor for each algorihtm and also better accuracy on the target dataset.
+
+I used the improved dataset and applied edge detection and then try to extract the features in the image by suing feature extractor algorithms like SIFT, SURF, and ORB. Further, I used the bag of visual word model on the feature extracted by the descriptors and applied K means clustering so that similar features are clustered together. Then created a new feature representation of the images based on the clustering.
+> Based on the feature representation created, I tried various Machine learning algorithms and got the following results (test accuracy)-
+
+![image](https://drive.google.com/uc?export=view&id=15bqMsAgaxsTP8AqxPoSQtBW6ro47orFk)
 
 ### Scale-Invariant Feature Transform (SIFT) 
 
@@ -81,31 +84,30 @@ descriptors are steered according to the orientation.
 
 ### AlexNet
 
-[AlexNet based Feature extraction paper](https://www.semanticscholar.org/paper/Feature-extraction-and-image-retrieval-based-on-Yuan-Zhang/bada07c7ea423739c0db6b8f1f2fc2438881f21d)
-### Transfer learning with Inception 
-
-[Application of transfer learning in feature extraction paper](https://ieeexplore.ieee.org/document/7946733)
-
-
-## Sign MNIST based model
-- I started with very basic dataset available at this [link](https://www.kaggle.com/datamunge/sign-language-mnist) and created a three-layered CNN based model with max-pooling at first two layers and two fully connected layers.
-- With 125 epochs of training, the model got an accuracy of **98.28%** on the test set.
-- The dataset has 27455 training samples which are 28 * 28 pixels so when this model tested on webcam input it does not tend to perform well given getting very good accuracy in the test set.
-
-## Improved sign dataset
-- [This](https://drive.google.com/open?id=1wgXtF6QHKBuXRx3qxuf-o6aOmN87t8G-) dataset is hand created is much more difficult to work with having 480 * 640 images and reflects good properties to make model deployable for real-world hand inputs.
-- Similar model architecture is being used as for sign MNIST but an extra convolution layer is added with max-pooling layer. Batch normalization is applied in the first two layers as it tends to perform better results.
+- with improved set - Similar model architecture is being used as for sign MNIST but an extra convolution layer is added with max-pooling layer. Batch normalization is applied in the first two layers as it tends to perform better results.
 - WIth 100 epochs of training, the model achieved **94.5%** accuracy on the test set.
-> #Note- The images in the dataset is resized to 128 * 128 pixels and also to grayscale.
+- created a three-layered CNN based model with max-pooling at first two layers and two fully connected layers.
+- With 125 epochs of training, the model got an accuracy of **98.28%** on the test set.
 
-## Image classification using feature extractors
-- Here I tend to work on classic image processing techniques for hand sign recognition.
-- I used the improved dataset and applied edge detection and then try to extract the features in the image by suing feature extractor algorithms like SIFT, SURF, and ORB. Further, I used the bag of visual word model on the feature extracted by the descriptors and applied K means clustering so that similar features are clustered together. Then created a new feature representation of the images based on the clustering.
-- On the new feature representation found on the previous step I tried various Machine learning model and got the following results.
-![](image.png)
-
-
-## Transfer learning using inception v3 model
+[AlexNet based Feature extraction paper](https://www.semanticscholar.org/paper/Feature-extraction-and-image-retrieval-based-on-Yuan-Zhang/bada07c7ea423739c0db6b8f1f2fc2438881f21d)
+### Transfer learning with Inception v3 model
+-The idea of transfer learning comes from a curious phenomenon that many deep neural networks trained on natural images learn similar features (texture, corners, edges and color blobs) in the initial layers. Such initial-layer features appear not to specific to a particular data-set or task but are general in that they are applicable to many data-sets and tasks. We call these initial-layer features general and can be transferred for learning specific data-set.
 - Pre-trained Inception model is being used and an extra layer is being added onto to create a new inception architecture to classify hand sign.
 - To decrease the compute time I stored the transfer values by the model of the training samples ahead of training and saved it onto a pickle file.
 - With 500 epochs of training our model tend to achieve an accuracy of **95%** and this model also tend to perform well on the webcam input as the images with which the model is trained is RGB images not the gray-scale.
+
+[Application of transfer learning in feature extraction paper](https://ieeexplore.ieee.org/document/7946733)
+
+## Dataset
+
+### Sign MNIST based model
+- I started with very basic dataset available at this [link](https://www.kaggle.com/datamunge/sign-language-mnist) 
+- The dataset has 27455 training samples which are 28 * 28 pixels so when this model tested on webcam input it does not tend to perform well given getting very good accuracy in the test set.
+
+### Improved sign dataset
+- [This](https://drive.google.com/open?id=1wgXtF6QHKBuXRx3qxuf-o6aOmN87t8G-) dataset is hand created is much more difficult to work with having 480 * 640 images and reflects good properties to make model deployable for real-world hand inputs.
+> #Note- The images in the dataset is resized to 128 * 128 pixels
+
+
+
+

@@ -1,3 +1,5 @@
+# Analysis on image feature extraction
+
 An implementational study on traditional and deep learning techniques for feature extraction. Extracting features i.e., comprehensive description of image to enhance accuracy of our classifier on the target dataset. This project involves various image processing technique including *edge detection, data augmentation, smoothing, feature detection, and extraction etc*. 
 
 
@@ -11,7 +13,7 @@ Further, I used the bag of visual word model on the feature extracted by the des
 
 > Based on the feature representation created, I tried various Machine learning algorithms and got the following results (test accuracy) on improved sign dataset-
 
-![image](https://drive.google.com/uc?export=view&id=15bqMsAgaxsTP8AqxPoSQtBW6ro47orFk)
+![image](images/accuracytrad.png)
 
 > With Sign MNIST dataset all algorithms were able to achieve more than 90% test accuracy.
 
@@ -41,8 +43,8 @@ drawback especially for real-time applications
 
 > Visualization of feature extracted from SIFT - 
 
-![image](https://drive.google.com/uc?export=view&id=1sMIoBixhli8fLmkHgW3bAW9VEtWsOkD0)
-![image](https://drive.google.com/uc?export=view&id=11OecykdbH6zPa0aiaf49t7zD6oiFLJ-O)
+![image](images/sift1.png)
+![image](images/sift2.png)
 
 [Main Paper](https://people.eecs.berkeley.edu/~malik/cs294/lowe-ijcv04.pdf)
 
@@ -67,8 +69,8 @@ wavelet responses.
 
 > Visualization of feature extracted from SURF - 
 
-![image](https://drive.google.com/uc?export=view&id=1UflcRBeYLvuUlHouAHrLzLOsieTclXlP)
-![image](https://drive.google.com/uc?export=view&id=1W8S0vLFTnILbwx80oWTnn5pOJVPHicj0)
+![image](images/surf1.png)
+![image](images/surf2.png)
 
 [Main Paper](https://people.ee.ethz.ch/~surf/eccv06.pdf)
 
@@ -94,8 +96,8 @@ descriptors are steered according to the orientation.
 
 > Visualization of feature extracted from ORB - 
 
-![image](https://drive.google.com/uc?export=view&id=19n1uftxFkUMlW-h3mRHSQ58Dx2vR1TZR)
-![image](https://drive.google.com/uc?export=view&id=1Ao17wySgM_8DIIS9YX9nhgWHhVkkJjE-)
+![image](images/orb1.png)
+![image](images/orb2.png)
 
 [Main Paper](https://ieeexplore.ieee.org/document/6126544)
 
@@ -116,6 +118,12 @@ Traditional feature extractors can be replaced by a convolutional neural network
 
 > Visualization of Feature Maps learned in each layer from the dataset- 
 
+![image](images/cnnfeatureout.png)
+![image](images/cnnfeatureout2.png)
+![image](images/cnnfeatureout3.png)
+![image](images/cnnfeatureout4.png)
+![image](images/cnnfeatureout5.png)
+
 [AlexNet based Feature extraction paper](https://www.semanticscholar.org/paper/Feature-extraction-and-image-retrieval-based-on-Yuan-Zhang/bada07c7ea423739c0db6b8f1f2fc2438881f21d)
 
 ### Transfer learning with Inception v3 model
@@ -123,6 +131,10 @@ Traditional feature extractors can be replaced by a convolutional neural network
 - Pre-trained Inception model is being used and an extra layer is being added onto to create a new inception architecture to classify hand sign.
 - To decrease the compute time I stored the transfer values by the model of the training samples ahead of training and saved it onto a pickle file.
 - With 500 epochs of training our model tend to achieve an test accuracy of **95%** on improved dataset and this model also tend to perform well on the webcam input on testing.
+
+> Webcam application detecting this sign as “s” - 
+
+![image](images/pred.png)
 
 [Application of transfer learning in feature extraction paper](https://ieeexplore.ieee.org/document/7946733)
 
@@ -134,8 +146,8 @@ Traditional feature extractors can be replaced by a convolutional neural network
 
 ### Improved sign dataset
 - [This](https://drive.google.com/open?id=1wgXtF6QHKBuXRx3qxuf-o6aOmN87t8G-) dataset is hand created is much more difficult to work with having 480 * 640 images and reflects good properties to make model deployable for real-world hand inputs.
-- This dataset is created by webcam from scratch for eaqch static american hand sign language.
-> #Note- The images in the dataset is resized to 128 * 128 pixels
+- This dataset is created by webcam from scratch for each static american hand sign language.
+- The images in the dataset is resized to 128 * 128 pixels for our use.
 
 
 

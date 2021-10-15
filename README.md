@@ -1,21 +1,21 @@
 # Analysis on image feature extraction
 
-An implementational study on traditional and deep learning techniques for feature extraction. Extracting features i.e., comprehensive description of image to enhance accuracy of our classifier on the target dataset. This project involves various image processing technique including *edge detection, data augmentation, smoothing, feature detection, and extraction etc*. 
+An implementational study on traditional and deep learning techniques for feature extraction. Extracting features i.e., comprehensive description of the image to enhance the accuracy of our classifier on the target dataset. This project involves various image processing techniques including *edge detection, data augmentation, smoothing, feature detection, and extraction, etc*. 
 
 
 ## Traditional feature detection
 
-In this we extract set of descriptors of image’s features, then pass those extracted features to our machine learning algorithms for classification on Hand sign language classification. Before extracting features from feature detection algorithms we apply some processing steps to our images - 
+In this, we extract a set of descriptors of the image’s features, then pass those extracted features to our machine learning algorithms for classification on Hand sign language classification. Before extracting features from feature detection algorithms we apply some processing steps to our images - 
 
-Images in our dataset contain different types of noise due to its creation via webcam, image smoothing (also called blurring) helps in reducing the noise. We applied Gaussian filter for image smoothing to all images in our dataset as we found that gaussian preserves more features like edges which is quite important based on our hand sign dataset. The gaussian kernel size of 5x5 gave the best results. Then I extracted the edges using canny edge detector and passed these processed images to the feature extraction algorithms explained in this section. I observed that these processing resulted in an increased set of feature descriptor for each algorihtm and also better accuracy on the target dataset.
+Images in our dataset contain different types of noise due to their creation via webcam, image smoothing (also called blurring) helps in reducing the noise. We applied a Gaussian filter for image smoothing to all images in our dataset as we found that gaussian preserves more features like edges which is quite important based on our hand sign dataset. The Gaussian kernel size of 5x5 gave the best results. Then I extracted the edges using a canny edge detector and passed these processed images to the feature extraction algorithms explained in this section. I observed that this processing resulted in an increased set of feature descriptors for each algorithm and also better accuracy on the target dataset.
 
-Further, I used the bag of visual word model on the feature extracted by the descriptors and applied K means clustering so that similar features are clustered together. Then created a new feature representation of the images based on the clustering.
+Further, I used the bag of visual word models on the feature extracted by the descriptors and applied K means clustering so that similar features are clustered together. Then created a new feature representation of the images based on the clustering.
 
-> Based on the feature representation created, I tried various Machine learning algorithms and got the following results (test accuracy) on improved sign dataset-
+> Based on the feature representation created, I tried various Machine learning algorithms and got the following results (test accuracy) on the improved sign dataset-
 
 ![image](images/accuracytrad.png)
 
-> With Sign MNIST dataset all algorithms were able to achieve more than 90% test accuracy.
+> With the Sign MNIST dataset all algorithms were able to achieve more than 90% test accuracy.
 
 ### Scale-Invariant Feature Transform (SIFT) 
 
@@ -23,7 +23,7 @@ Further, I used the bag of visual word model on the feature extracted by the des
 transformations, intensity, and viewpoint change in matching
 features. 
 - The SIFT algorithm has 4 basic steps- 
-  - First is to estimate a scale space extrema using the Difference of
+  - First is to estimate scale-space extrema using the Difference of
 Gaussian (DoG). 
   - Secondly, a key point localization where the
 key point candidates are localized and refined by eliminating
@@ -51,13 +51,13 @@ drawback especially for real-time applications
 ### Speeded-Up Robust Features (SURF)
 
 - Speed up Robust Feature (SURF) technique, which is an
-approximation of SIFT, performs faster than SIFT without
+approximation of SIFT performs faster than SIFT without
 reducing the quality of the detected points.
 
 - SURF approximates the DoG with box filters. Instead of
 Gaussian averaging the image, squares are used for
 approximation since the convolution with square is much
-faster if the integral image is used. Also this can be done in
+faster if the integral image is used. Also, this can be done in
 parallel for different scales. 
 
 - The SURF uses a BLOB detector
@@ -76,13 +76,13 @@ wavelet responses.
 
 ### Oriented FAST and Rotated BRIEF (ORB)
 
-- ORB is a fusion of the FAST key point detector and BRIEF
+- ORB is a fusion of the FAST keypoint detector and BRIEF
 descriptor with some modifications. 
-- Initially to determine
+- Initially, to determine
 the key points, it uses FAST. Then a Harris corner measure is
 applied to find top N points. FAST does not compute the
-orientation and is rotation variant. It computes the intensity
-weighted centroid of the patch with located corner at center.
+orientation and is a rotation variant. It computes the intensity
+weighted centroid of the patch with the located corner at the center.
 - The direction of the vector from this corner point to centroid
 gives the orientation. Moments are computed to improve the
 rotation invariance. The descriptor BRIEF poorly performs if
@@ -103,18 +103,18 @@ descriptors are steered according to the orientation.
 
 ## Deep Learning feature extraction
 
-Traditional feature extractors can be replaced by a convolutional neural network(CNN), since CNN’s have a strong ability to extract complex features that express the image in much more detail, learn the task specific features and are much more efficient.
+Traditional feature extractors can be replaced by a convolutional neural network(CNN), since CNN’s have a strong ability to extract complex features that express the image in much more detail, learn the task-specific features, and are much more efficient.
 
 ### CNN model with batch-normalization
 
-- Created a four-layered CNN based model with max-pooling and three fully connected layers.
+- Created a four-layered CNN-based model with max-pooling and three fully connected layers.
 - Batch normalization is applied in the first two layers as it tends to perform better results.
-- It is also consisted of dropout, ReLU activations, ADAM optimizer with softmax cross entropy cost function.
-> With 50 epochs of training, the model achieved **97%** accuracy on the test set of Sign MNIST dataset.
+- It also consists of dropout, ReLU activations, ADAM optimizer with softmax cross-entropy cost function.
+> With 50 epochs of training, the model achieved **97%** accuracy on the test set of the Sign MNIST dataset.
 
-> With 100 epochs of training, the model achieved **94.5%** accuracy on the test set of improved dataset.
+> With 100 epochs of training, the model achieved **94.5%** accuracy on the test set of the improved dataset.
 
-> With 125 epochs of training, the model got an accuracy of **98.28%** on the test set of improved dataset.
+> With 125 epochs of training, the model got an accuracy of **98.28%** on the test set of the improved dataset.
 
 > Visualization of Feature Maps learned in each layer from the dataset- 
 
@@ -127,10 +127,10 @@ Traditional feature extractors can be replaced by a convolutional neural network
 [AlexNet based Feature extraction paper](https://www.semanticscholar.org/paper/Feature-extraction-and-image-retrieval-based-on-Yuan-Zhang/bada07c7ea423739c0db6b8f1f2fc2438881f21d)
 
 ### Transfer learning with Inception v3 model
-- Deep neural networks trained on natural images learn similar features (texture, corners, edges and color blobs) in the initial layers. Such initial-layer features appear not to specific to a particular data-set or task but are general in that they are applicable to many data-sets and tasks. We call these initial-layer features general and can be transferred for learning specific data-set.
-- Pre-trained Inception model is being used and an extra layer is being added onto to create a new inception architecture to classify hand sign.
-- To decrease the compute time I stored the transfer values by the model of the training samples ahead of training and saved it onto a pickle file.
-- With 500 epochs of training our model tend to achieve an test accuracy of **95%** on improved dataset and this model also tend to perform well on the webcam input on testing.
+- Deep neural networks trained on natural images learn similar features (texture, corners, edges, and color blobs) in the initial layers. Such initial-layer features appear not to be specific to a particular data-set or task but are general in that they are applicable to many datasets and tasks. We call these initial-layer features general and can be transferred for learning specific data-set.
+- Pre-trained Inception model is being used and an extra layer is being added to create a new inception architecture to classify hand signs.
+- To decrease the compute time I stored the transfer values by the model of the training samples ahead of training and saved them onto a pickle file.
+- With 500 epochs of training our model tend to achieve a test accuracy of **95%** on the improved dataset and this model also tends to perform well on the webcam input on testing.
 
 > Webcam application detecting this sign as “s” - 
 
@@ -141,14 +141,11 @@ Traditional feature extractors can be replaced by a convolutional neural network
 ## Dataset
 
 ### Sign MNIST based model
-- I started with very basic dataset available at this [link](https://www.kaggle.com/datamunge/sign-language-mnist) 
-- The dataset has 27455 training samples which are 28 * 28 pixels so when this model tested on webcam input it does not tend to perform well given getting very good accuracy in the test set.
+- I started with a very basic dataset available at this [link](https://www.kaggle.com/datamunge/sign-language-mnist) 
+- The dataset has 27455 training samples which are 28 * 28 pixels so when this model is tested on webcam input it does not tend to perform well given getting very good accuracy in the test set.
 
 ### Improved sign dataset
-- [This](https://drive.google.com/open?id=1wgXtF6QHKBuXRx3qxuf-o6aOmN87t8G-) dataset is hand created is much more difficult to work with having 480 * 640 images and reflects good properties to make model deployable for real-world hand inputs.
-- This dataset is created by webcam from scratch for each static american hand sign language.
-- The images in the dataset is resized to 128 * 128 pixels for our use.
-
-
-
+- [This](https://drive.google.com/open?id=1wgXtF6QHKBuXRx3qxuf-o6aOmN87t8G-) dataset is hand created is much more difficult to work with having 480 * 640 images and reflects good properties to make the model deployable for real-world hand inputs.
+- This dataset is created by webcam from scratch for each static American hand sign language.
+- The images in the dataset are resized to 128 * 128 pixels for our use.
 

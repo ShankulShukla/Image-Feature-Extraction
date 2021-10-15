@@ -134,6 +134,7 @@ Traditional feature extractors can be replaced by a convolutional neural network
 
 ### Improved sign dataset
 - [This](https://drive.google.com/open?id=1wgXtF6QHKBuXRx3qxuf-o6aOmN87t8G-) dataset is hand created is much more difficult to work with having 480 * 640 images and reflects good properties to make model deployable for real-world hand inputs.
+- This dataset is created by webcam from scratch for eaqch static american hand sign language.
 > #Note- The images in the dataset is resized to 128 * 128 pixels
 
 

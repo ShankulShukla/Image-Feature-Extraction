@@ -1,16 +1,19 @@
-An implementational study on traditional and deep learning techniques for feature extraction. Extracting features i.e., comprehensive description of image to enhance accuracy of our classifier on the target dataset. This project involves various image processing technique including edge detection, smoothing, feature detection, and extraction etc. 
+An implementational study on traditional and deep learning techniques for feature extraction. Extracting features i.e., comprehensive description of image to enhance accuracy of our classifier on the target dataset. This project involves various image processing technique including *edge detection, data augmentation, smoothing, feature detection, and extraction etc*. 
 
 
 ## Traditional feature detection
 
-In this we extract set of descriptors of image’s features, then pass those extracted features to our machine learning algorithms for classification on hand sign language classification. Before extracting features from feature detection algorithms we applied two processing steps to our images - 
+In this we extract set of descriptors of image’s features, then pass those extracted features to our machine learning algorithms for classification on Hand sign language classification. Before extracting features from feature detection algorithms we apply some processing steps to our images - 
 
-Images can contain different types of noise, image Smoothing (also called blurring) techniques help in reducing the noise. We applied Gaussian filter for image smoothing to all images in our dataset as we found that gaussian preserves more features like edges which is quite important based on our hand sign dataset. The kernel size of 5x5 gave the best results. Then I extracted the edges using canny edge detector and passed these processed imahge to the feature extraction alorgtims defined later. This earlier processing resulted in increased set of feature descriptor for each algorihtm and also better accuracy on the target dataset.
+Images in our dataset contain different types of noise due to its creation via webcam, image smoothing (also called blurring) helps in reducing the noise. We applied Gaussian filter for image smoothing to all images in our dataset as we found that gaussian preserves more features like edges which is quite important based on our hand sign dataset. The gaussian kernel size of 5x5 gave the best results. Then I extracted the edges using canny edge detector and passed these processed images to the feature extraction algorithms explained in this section. I observed that these processing resulted in an increased set of feature descriptor for each algorihtm and also better accuracy on the target dataset.
 
-I used the improved dataset and applied edge detection and then try to extract the features in the image by suing feature extractor algorithms like SIFT, SURF, and ORB. Further, I used the bag of visual word model on the feature extracted by the descriptors and applied K means clustering so that similar features are clustered together. Then created a new feature representation of the images based on the clustering.
-> Based on the feature representation created, I tried various Machine learning algorithms and got the following results (test accuracy)-
+Further, I used the bag of visual word model on the feature extracted by the descriptors and applied K means clustering so that similar features are clustered together. Then created a new feature representation of the images based on the clustering.
+
+> Based on the feature representation created, I tried various Machine learning algorithms and got the following results (test accuracy) on improved sign dataset-
 
 ![image](https://drive.google.com/uc?export=view&id=15bqMsAgaxsTP8AqxPoSQtBW6ro47orFk)
+
+> With Sign MNIST dataset all algorithms were able to achieve more than 90% test accuracy.
 
 ### Scale-Invariant Feature Transform (SIFT) 
 
@@ -36,6 +39,11 @@ proven to be very efficient in object recognition applications,
 it requires a large computational complexity which is a major
 drawback especially for real-time applications
 
+> Visualization of feature extracted from SIFT - 
+
+![image](https://drive.google.com/uc?export=view&id=1sMIoBixhli8fLmkHgW3bAW9VEtWsOkD0)
+![image](https://drive.google.com/uc?export=view&id=11OecykdbH6zPa0aiaf49t7zD6oiFLJ-O)
+
 [Main Paper](https://people.eecs.berkeley.edu/~malik/cs294/lowe-ijcv04.pdf)
 
 ### Speeded-Up Robust Features (SURF)
@@ -55,7 +63,12 @@ which is based on the Hessian matrix to find the points of
 interest. For orientation assignment, it uses wavelet responses
 in both horizontal and vertical directions by applying adequate
 Gaussian weights. For feature description also SURF uses the
-wavelet responses
+wavelet responses.
+
+> Visualization of feature extracted from SURF - 
+
+![image](https://drive.google.com/uc?export=view&id=1UflcRBeYLvuUlHouAHrLzLOsieTclXlP)
+![image](https://drive.google.com/uc?export=view&id=1W8S0vLFTnILbwx80oWTnn5pOJVPHicj0)
 
 [Main Paper](https://people.ee.ethz.ch/~surf/eccv06.pdf)
 
@@ -76,25 +89,40 @@ there is an in-plane rotation.
 computed using the orientation of patch and then the BRIEF
 descriptors are steered according to the orientation. 
 
-- SIFT and SURF are patented and this algorithm from OpenCV labs is a free alternative to them, that uses FAST keypoint detector and BRIEF descriptor.
+- SIFT and SURF are patented and this algorithm from OpenCV labs is a free alternative to them.
+
+
+> Visualization of feature extracted from ORB - 
+
+![image](https://drive.google.com/uc?export=view&id=19n1uftxFkUMlW-h3mRHSQ58Dx2vR1TZR)
+![image](https://drive.google.com/uc?export=view&id=1Ao17wySgM_8DIIS9YX9nhgWHhVkkJjE-)
 
 [Main Paper](https://ieeexplore.ieee.org/document/6126544)
 
 ## Deep Learning feature extraction
 
-### AlexNet
+Traditional feature extractors can be replaced by a convolutional neural network(CNN), since CNN’s have a strong ability to extract complex features that express the image in much more detail, learn the task specific features and are much more efficient.
 
-- with improved set - Similar model architecture is being used as for sign MNIST but an extra convolution layer is added with max-pooling layer. Batch normalization is applied in the first two layers as it tends to perform better results.
-- WIth 100 epochs of training, the model achieved **94.5%** accuracy on the test set.
-- created a three-layered CNN based model with max-pooling at first two layers and two fully connected layers.
-- With 125 epochs of training, the model got an accuracy of **98.28%** on the test set.
+### CNN model with batch-normalization
+
+- Created a four-layered CNN based model with max-pooling and three fully connected layers.
+- Batch normalization is applied in the first two layers as it tends to perform better results.
+- It is also consisted of dropout, ReLU activations, ADAM optimizer with softmax cross entropy cost function.
+> With 50 epochs of training, the model achieved **97%** accuracy on the test set of Sign MNIST dataset.
+
+> With 100 epochs of training, the model achieved **94.5%** accuracy on the test set of improved dataset.
+
+> With 125 epochs of training, the model got an accuracy of **98.28%** on the test set of improved dataset.
+
+> Visualization of Feature Maps learned in each layer from the dataset- 
 
 [AlexNet based Feature extraction paper](https://www.semanticscholar.org/paper/Feature-extraction-and-image-retrieval-based-on-Yuan-Zhang/bada07c7ea423739c0db6b8f1f2fc2438881f21d)
+
 ### Transfer learning with Inception v3 model
--The idea of transfer learning comes from a curious phenomenon that many deep neural networks trained on natural images learn similar features (texture, corners, edges and color blobs) in the initial layers. Such initial-layer features appear not to specific to a particular data-set or task but are general in that they are applicable to many data-sets and tasks. We call these initial-layer features general and can be transferred for learning specific data-set.
+- Deep neural networks trained on natural images learn similar features (texture, corners, edges and color blobs) in the initial layers. Such initial-layer features appear not to specific to a particular data-set or task but are general in that they are applicable to many data-sets and tasks. We call these initial-layer features general and can be transferred for learning specific data-set.
 - Pre-trained Inception model is being used and an extra layer is being added onto to create a new inception architecture to classify hand sign.
 - To decrease the compute time I stored the transfer values by the model of the training samples ahead of training and saved it onto a pickle file.
-- With 500 epochs of training our model tend to achieve an accuracy of **95%** and this model also tend to perform well on the webcam input as the images with which the model is trained is RGB images not the gray-scale.
+- With 500 epochs of training our model tend to achieve an test accuracy of **95%** on improved dataset and this model also tend to perform well on the webcam input on testing.
 
 [Application of transfer learning in feature extraction paper](https://ieeexplore.ieee.org/document/7946733)
 
